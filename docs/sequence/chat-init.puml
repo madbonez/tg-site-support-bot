@@ -1,0 +1,38 @@
+@startuml
+
+
+BackOfficeStuff -> BotInstructionSite: read manual
+activate BackOfficeStuff
+BotInstructionSite --> BackOfficeStuff
+
+BackOfficeStuff -> BotInstructionSite: register new account
+BotInstructionSite --> BackOfficeStuff
+
+BackOfficeStuff -> BotInstructionSite: register domain name
+BotInstructionSite --> BackOfficeStuff
+
+BackOfficeStuff -> BotInstructionSite: add avatar, logo, construct action form, operators tg ids
+BotInstructionSite --> BackOfficeStuff
+
+BackOfficeStuff -> BotInstructionSite: get app id + secret token
+BotInstructionSite --> BackOfficeStuff
+deactivate BackOfficeStuff
+
+BackOfficeStuff -> ClientOfficeSite: inject html code for widgets
+activate BackOfficeStuff
+ClientOfficeSite --> BackOfficeStuff
+deactivate BackOfficeStuff
+
+
+BackOfficeStuff -> TgSupportChat: create support chat then add discussion group
+activate BackOfficeStuff
+TgSupportChat --> BackOfficeStuff
+BackOfficeStuff -> TgSupportChat: add bot
+TgSupportChat --> BackOfficeStuff
+
+BackOfficeStuff -> TgSupportChat: add app id and secret token once
+TgSupportChat --> BackOfficeStuff
+deactivate BackOfficeStuff
+
+
+@enduml

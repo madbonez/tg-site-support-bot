@@ -1,0 +1,17 @@
+@startuml
+
+[Site] --> [SiteChat]
+
+[SiteChat] --> [SendMessageYaFn]
+
+[SiteChat] ---> [S3Bucked]: read reply, repeat
+
+[SendMessageYaFn] --> [TelegramChanelInput]
+
+[TelegramChanelOutput] --> [UpdatesHandlerYaFn]
+
+[UpdatesHandlerYaFn] --> [S3Bucked]
+
+[CleanUpYaFn] --> [S3Bucked]
+
+@enduml

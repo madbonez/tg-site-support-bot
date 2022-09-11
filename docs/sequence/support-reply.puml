@@ -1,0 +1,20 @@
+@startuml
+
+actor BackOfficeStuff
+
+BackOfficeStuff -> TgSupportChat: tap get in work button
+
+activate TgSupportChat
+TgSupportChat -> BotFn: callback event
+BotFn -> S3Bucked: save into {parentMessageId: {s: {inworkById}}}
+BotFn --> TgSupportChat: update message - mark  as "in work" and add assignee id
+deactivate TgSupportChat
+
+BackOfficeStuff -> TgSupportChat: write reply
+activate TgSupportChat
+TgSupportChat -> BotFn: update event {parentMessageId, datetime, replyToId}
+BotFn -> S3Bucked: save into {parentMessageId: r: {replyToId, datetime, operatorName}[]}
+S3Bucked --> TgSupportChat: ok
+deactivate TgSupportChat
+
+@enduml

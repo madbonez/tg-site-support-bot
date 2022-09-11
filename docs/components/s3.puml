@@ -1,0 +1,13 @@
+@startuml
+
+entity Messsages {
+    guid: Message
+}
+
+entity  Message {
+    createdAt: Date
+    text: string
+    userId: string
+}
+
+@enduml

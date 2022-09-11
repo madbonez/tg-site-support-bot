@@ -1,0 +1,16 @@
+@startuml
+actor User
+
+User -> SiteChat: asks question
+
+activate SiteChat
+
+SiteChat -> SendFn: forward question
+
+SendFn -> TgSupportChat: create new formatted chanel post
+TgSupportChat --> SiteChat: return messageId
+
+SiteChat --> User: Ok. Plz wait free operator
+
+deactivate SiteChat
+@enduml

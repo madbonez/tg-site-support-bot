@@ -1,0 +1,15 @@
+@startuml
+actor User
+
+User -> SiteChat: close browser/tab/chat
+
+activate SiteChat
+
+SiteChat -> SendFn: destroy event {parentMessageId}
+
+SendFn -> TgSupportChat: update status as closed {parentMessageId}
+TgSupportChat --> SiteChat: ok
+
+destroy SiteChat
+
+@enduml

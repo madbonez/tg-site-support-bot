@@ -1,0 +1,9 @@
+{
+  "include": ["src/**/*",
+    "local/**/*"
+  ],
+  "compilerOptions": {
+    "outDir": "dist",
+    "module": "CommonJS"
+  }
+}
