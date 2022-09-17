@@ -1,0 +1,19 @@
+@startuml
+actor User
+
+User -> SiteChat: message
+activate SiteChat
+
+SiteChat -> SiteChat: generate unique guid
+
+SiteChat -> SendFn: forward message
+activate SendFn
+SendFn -> TgSupportChat: create new formatted chanel post with guid
+SendFn -> S3Bucket: create new key in bucket with guid, then save message there
+S3Bucket --> SiteChat: ok
+deactivate SendFn
+
+SiteChat --> User: Ok. Plz wait free operator
+
+deactivate SiteChat
+@enduml

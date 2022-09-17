@@ -1,0 +1,23 @@
+@startuml
+actor User
+
+User -> SiteChat: opens chat
+
+group repeat/timer
+SiteChat -> S3Bucket: through http read replies by guid
+S3Bucket --> SiteChat: status == inWork
+end
+
+SiteChat --> SiteChat: operator got to work state
+
+...
+
+group repeat/timer
+SiteChat -> S3Bucket: through http read replies by guid
+S3Bucket --> SiteChat: replies array ? has new
+end
+
+SiteChat --> SiteChat: you have a message state
+
+deactivate SiteChat
+@enduml

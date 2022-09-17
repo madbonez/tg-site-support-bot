@@ -1,0 +1,35 @@
+@startuml
+
+actor BackOfficeStuff
+
+BackOfficeStuff -> TgSupportChat: tap get in work button
+
+activate TgSupportChat
+TgSupportChat -> BotFn: event
+
+activate BotFn
+BotFn --> TgSupportChat
+BotFn -> BotFn: extract guid
+BotFn -> S3Bucket: set new work status in bucket with guid
+activate S3Bucket
+S3Bucket --> BotFn: ok
+deactivate S3Bucket
+
+BotFn -> TgSupportChat: update message - mark  as "in work" and add tg assignee id
+
+deactivate TgSupportChat
+
+BackOfficeStuff -> TgSupportChat: write reply
+activate TgSupportChat
+TgSupportChat -> BotFn: event
+BotFn --> TgSupportChat: ok
+BotFn -> BotFn: extract guid
+
+BotFn -> S3Bucket: save reply into guid key whith bucket
+activate S3Bucket
+S3Bucket --> BotFn: ok
+deactivate S3Bucket
+
+deactivate TgSupportChat
+
+@enduml

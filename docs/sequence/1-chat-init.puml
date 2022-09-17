@@ -4,19 +4,32 @@
 BackOfficeStuff -> BotInstructionSite: read manual
 activate BackOfficeStuff
 BotInstructionSite --> BackOfficeStuff
+...
 
 BackOfficeStuff -> BotInstructionSite: register new account
 BotInstructionSite --> BackOfficeStuff
 
-BackOfficeStuff -> BotInstructionSite: register domain name
+...
+
+BackOfficeStuff -> BotInstructionSite: register domain name (security)
 BotInstructionSite --> BackOfficeStuff
+
+...
 
 BackOfficeStuff -> BotInstructionSite: add avatar, logo, construct action form, operators tg ids
 BotInstructionSite --> BackOfficeStuff
 
+...
+
+BackOfficeStuff -> BotInstructionSite: add default contacts if operator is not available
+BotInstructionSite --> BackOfficeStuff
+...
+
 BackOfficeStuff -> BotInstructionSite: get app id + secret token
 BotInstructionSite --> BackOfficeStuff
 deactivate BackOfficeStuff
+
+...
 
 BackOfficeStuff -> ClientOfficeSite: inject html code for widgets
 activate BackOfficeStuff
