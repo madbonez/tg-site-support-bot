@@ -1,6 +1,3 @@
-# Telegram bot for
+# Telegram bot
 
-https://cloud.yandex.ru/docs/storage/s3/api-ref/object/get
-
-
-![img.png](docs/img.png)
+## Description
