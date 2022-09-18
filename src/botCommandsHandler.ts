@@ -83,10 +83,11 @@ module.exports.handler = async function (event, context) {
         // bot.context.sendMessage()
     } else {
         const tmp = JSON.parse(event.body); // get data passed to us
-        bot.handleUpdate(tmp); // make Telegraf process that data
+        await bot.handleUpdate(tmp); // make Telegraf process that data
     }
     return {
         statusCode: 200,
-        body: 'Hello World!'
+        body: 'Ok'
     }
 };
+

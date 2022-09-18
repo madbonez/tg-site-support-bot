@@ -1,11 +1,12 @@
 import { Telegram } from 'telegraf';
 import { InlineKeyboardButton } from 'typegram/markup';
+import { getConfig } from '../config/getConfig';
 
+const config = getConfig();
 
-function sendMessage(text: string) {
-
-    const telega = new Telegram('5631577407:AAH2HV9aNRkR1fui0A-hwi6bwzijaKZhfe8')
-    telega.sendMessage('-1001719567342', text, {
+export async function telegramSendMessage(text: string): Promise<number> {
+    const telega = new Telegram(config.TELEGRAM_BOT_ID)
+    const response = await telega.sendMessage(config.TELEGRAM_CHAT_ID, text, {
         reply_markup: {
             inline_keyboard: [
                 [
@@ -18,6 +19,6 @@ function sendMessage(text: string) {
         }
     })
 
+    return response.message_id;
 }
 
-sendMessage(`Новое обращение [xqdasd] ${new Date().toISOString()} 🔵`)
