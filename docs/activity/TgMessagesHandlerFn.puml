@@ -1,0 +1,7 @@
+@startuml
+(*) --> get message from TG
+--> fetch guid
+--> update work status S3MessagesBucket
+--> "update state in S3TgMessagesBucket"
+TODO
+@enduml

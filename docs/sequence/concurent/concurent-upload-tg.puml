@@ -10,13 +10,13 @@ TgBucket --> TgBot
 
 TgBot -> TgBucket: upload new message
 
-TgBot -> SharedBucket: read last message
-SharedBucket --> TgBot
+TgBot -> S3MessagesBucket: read last message
+S3MessagesBucket --> TgBot
 
 ...
 
 TgBot -> TgBot: merge tg history with shared list
 
-TgBot -> SharedBucket: upload new state with message2
+TgBot -> S3MessagesBucket: upload new state with message2
 
 @enduml

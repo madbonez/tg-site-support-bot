@@ -1,11 +1,6 @@
 @startuml
 
 
-BackOfficeStuff -> BotInstructionSite: read manual
-activate BackOfficeStuff
-BotInstructionSite --> BackOfficeStuff
-...
-
 BackOfficeStuff -> BotInstructionSite: register new account
 BotInstructionSite --> BackOfficeStuff
 

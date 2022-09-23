@@ -1,0 +1,16 @@
+@startuml
+
+Bob -> SiteChat: sent message1
+
+group repeat
+SiteChat -> S3MessagesBucket: read last message if-modufied-*
+S3MessagesBucket --> SiteChat: new messages list
+SiteChat -> SiteChat: combine with a priority local history (restore if lost due to parallelism)
+end
+
+...
+
+SiteChat -> SiteChat: merge allMessageHistory + message1
+SiteChat -> S3MessagesBucket: upload message1*
+
+@enduml

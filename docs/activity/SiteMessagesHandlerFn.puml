@@ -1,0 +1,16 @@
+@startuml
+(*) --> "get message and guid from site"
+if "S3Messages has filename with guid?" then
+ -->[true] compose reply tg message
+ --> get {guid}.json content
+else
+ -->[false] compose first tg message
+ --> create {guid}.json
+ --> get {guid}.json content
+
+"get {guid}.json content" -> "append message to bucket"
+--> "read organization settings from S3OrgBucket"
+--> "send message to tg"
+note right: using chanel id or parent message id
+--> (*)
+@enduml

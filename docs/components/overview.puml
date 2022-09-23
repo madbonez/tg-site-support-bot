@@ -1,17 +1,23 @@
 @startuml
+component S3MessagesBucket
+component S3TgMessagesBucket
+component S3OrgBucket
+component SiteChat
+component TgSupportChat
 
-[Site] --> [SiteChat]
+component SiteMessagesHandlerFn #LightBlue
+component TgMessagesHandlerFn #LightBlue
 
-[SiteChat] --> [SendMessageYaFn]
+SiteMessagesHandlerFn --> S3MessagesBucket
+SiteMessagesHandlerFn --> S3OrgBucket
+SiteMessagesHandlerFn --> TgSupportChat
 
-[SiteChat] ---> [S3Bucked]: read a reply, repeat
 
-[SendMessageYaFn] --> [TelegramChanelInput]
+TgMessagesHandlerFn --> S3TgMessagesBucket
+TgMessagesHandlerFn --> S3MessagesBucket
 
-[TelegramChanelOutput] --> [UpdatesHandlerYaFn]
+SiteChat --> SiteMessagesHandlerFn
 
-[UpdatesHandlerYaFn] --> [S3Bucked]
-
-[CleanUpYaFn] --> [S3Bucked]
+S3MessagesBucket --> SiteChat
 
 @enduml
